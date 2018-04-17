@@ -12,20 +12,14 @@
             $(document).ready(function () {
                 var table = document.getElementById("outerTable");
                 var cells = table.getElementsByTagName('th');
-                {#var select = document.createElement("select");#}
                 $(function () {
                     $("tr").each(function () {
                         //this is where I create/add the dropdown menu to the table//
-                        var dropdown_str = "<div class='dropdown'><button id='dLabel' type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>Unknown<span class='caret'></span></button><ul aria-labelledby='drop4' class='dropdown-menu' id='menu1'><li class='Confirm'><a href='#'>Confirm</a></li><li class='Reject'><a href='#'>Reject</a></li></ul></div>";
                         var combo = '<select>' +
-                            {#                            {%  for predict in predicte_data %}#}
-                            '<option>' + 'Unknown' + '</option>' +
-                            {#                            {%  endfor %}#}
+                            {%  for predict in predicte_data %}
+                                '<option>' + "{{ predict | safe }}" +'</option>'+
+                            {% endfor %}
                             '</select>'
-                        {#var option = document.createElement("option")#}
-                        {#option.textContent = {{ predicte_data }}#}
-                        {#select.appendChild(option)#}
-
                         $(this).find("td:eq(0)").html(combo)
 
                     });
